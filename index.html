@@ -22,6 +22,10 @@
         </div>
     </div>
     <script>
+        window.onerror = function(error,url,line){
+            console.log(error);
+            return false;
+        };
         var vm = new Vue({
             el:"#app",
             data:{
@@ -93,6 +97,7 @@
             console.log(s);
             s = " 你的屏幕设置 "  + window.screen.deviceXDPI ; //像素/英寸"; 
             console.log(s);
+            console.log(a);
         } 
     </script>
 </body>

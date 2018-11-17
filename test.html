@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>test</title>
+</head>
+<body>
+    <div>
+        <h1>test onerror</h1>
+    </div>
+    <script>
+        window.onerror = function(error,url,line){
+            console.log("error");
+            console.log(error);
+            return true;
+        };
+        console.log(A);
+    </script>
+</body>
+</html>
