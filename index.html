@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <script src="test.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{message}}
+    </div>
+    <script>
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                message:'这是用vs code写的代码'
+            },
+            created:function() {
+                console.log(window.navigator);
+                console.log(window.navigator.userAgent);
+                // getPostition();
+                getScreenInfo();
+            },
+        })
+        // 获取地理位置的navigator.geolocation
+        function getPostition(){
+            var navigator = window.navigator;
+            if(navigator.geolocation){
+                navigator.geolocation.getCurrentPosition(function(pos){
+                    var x = pos.coords.latitude;
+                    var y = pos.coords.latitude;
+                    // alert('你的地理位置：' + x + "," + y);
+                    console.log('你的地理位置：' + x + "," + y);
+                    console.log(pos);
+                })
+            }
+        }
+        // 获取屏幕信息
+        function getScreenInfo(){
+            var screen = window.screen;
+            console.log('你的屏幕信息：');
+            console.log(screen);
+        }
+        
+    </script>
+</body>
+</html>
