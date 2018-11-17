@@ -9,14 +9,37 @@
 <body>
     <div>
         <h1>test onerror</h1>
+        <p id="input"></p>
+        <p id="prompt"></p>
+        <p id="heading"></p>
+        <a href="index.html" target="_top">使用target属性指定打开链接跳转的窗口名</a>
     </div>
     <script>
+        console.log(window);
+        console.log('window.name = ' + window.name);
+        // console.log('opener = ' + window.opener);
+        var ui = new Array();
+        console.log(typeof ui);
+        ui = ['input','prompt','heading'];
+        ui.forEach(function(id){
+            ui[id] = document.getElementById(id); //注意这里是把元素赋值给数组的属性，而不是添加到数组，数组的元素并没有变多
+        })
+        ui.forEach(function(id){
+            console.log(id);
+            console.log(ui[id]);
+        })
+        console.log(ui);
+        console.log(window.input);
+        console.log(window.prompt);
+        for(let i = 0;i < ui.length ; i++){
+            console.log(ui[i]);
+        }
         window.onerror = function(error,url,line){
-            console.log("error");
+            console.log("you got a error");
             console.log(error);
             return true;
         };
-        console.log(A);
+        // console.log(A);
     </script>
 </body>
 </html>

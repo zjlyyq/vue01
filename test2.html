@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>测试对象字面量</title>
+</head>
+
+<body onload="created()">
+    <div>
+        hello
+    </div>
+    <script>
+        function created(){
+            var book = {
+                'main tital':'JavaScript',
+                'subTime':'sdsd'
+            }
+            console.log(book.subTime);
+            var div = document.getElementsByTagName('div')[0];
+            div.innerHTML = book.subTime;
+            console.log("Object.prototype");
+            console.log(Object.prototype);
+            console.log("Array.prototype");
+            console.log(Array.prototype);
+            var zjl = new Object();
+            zjl.name = 'zjl';
+            zjl.sayName = function(){
+                console.log(this.name);
+            }
+            zjl.sayName();
+            var yyq = new Object();
+            // console.log(yyq.prototype);
+            yyq = Object.create(zjl);
+            yyq.name = 'yyq';
+            yyq.sayName();
+            console.log(yyq);
+            var zy = Object.create(null);
+            console.log(zy);
+        }
+
+    </script>
+</body>
+</html>

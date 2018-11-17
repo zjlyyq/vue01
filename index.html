@@ -20,12 +20,10 @@
         <div style="width:1509px;height:400px;background:rebeccapurple;display: inline-block;padding-left: 40px;">
             <h5>{{message}}</h5>
         </div>
+        <button onclick="openAnotherWindow()">打开另一个窗口</button>
+        <a href="test.html" target="test_window">试试看能不能用target属性导航到另一个窗口</a>
     </div>
     <script>
-        window.onerror = function(error,url,line){
-            console.log(error);
-            return false;
-        };
         var vm = new Vue({
             el:"#app",
             data:{
@@ -37,8 +35,23 @@
                 // getPostition();
                 getScreenInfo();
                 getScreenInfo2();
+                console.log(window);
             },
         })
+        // open打开另一个窗口
+        function openAnotherWindow(){
+            var w = window.open('test.html','test_window');
+            console.log(w);
+            // w.close();
+            var ww = w;
+            // 两秒后自动关闭
+            setTimeout(function closeWindow(ww){
+                console.log(ww);
+                ww.close();
+            },2000);
+            w.alert('收尾');
+            console.log(w.opener);
+        }
         // 获取地理位置的navigator.geolocation
         function getPostition(){
             var navigator = window.navigator;
@@ -97,7 +110,6 @@
             console.log(s);
             s = " 你的屏幕设置 "  + window.screen.deviceXDPI ; //像素/英寸"; 
             console.log(s);
-            console.log(a);
         } 
     </script>
 </body>
