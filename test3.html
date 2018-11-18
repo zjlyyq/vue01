@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>文档/视口坐标</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        #app{
+            width: 1440px;
+            height: 900px;
+            background: #ff0;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        hello
+    </div>
+    <script>
+        // 获取屏幕信息
+        function getScreenInfo(){
+            var screen = window.screen;
+            console.log('你的屏幕信息：');
+            console.log(screen);
+            console.log('document.body.clientWidth = ' + document.body.clientWidth);
+            console.log('document.body.clientHeight = ' + document.body.clientHeight);
+        }
+        getScreenInfo();
+        console.log('window.pageXOffset = ' + window.pageXOffset);
+        console.log('window.pageYOffset = ' + window.pageYOffset);
+        console.log('window.screenLeft = ' + window.document.documentElement.scrollLeft);
+        console.log('window.screenTop = ' + window.screenTop);
+    </script>
+</body>
+</html>
