@@ -38,6 +38,59 @@
             console.log(yyq);
             var zy = Object.create(null);
             console.log(zy);
+
+            var p = {
+                x:1,
+                y:2,
+
+                get r(){
+                    return Math.sqrt(this.x*this.x + this.y*this.y);
+                },
+                set r(nr){
+                    var  s = nr/Math.sqrt(this.x*this.x + this.y*this.y);
+                    this.x *= s;
+                    this.y *= s;
+                }
+            }
+            console.log('p.r = '+p.r);
+            console.log(p);   //{x:1,y:2}为什么没输出r
+            console.log(Object.getOwnPropertyDescriptor(p,"r"));//r属性是可枚举的
+            var q = Object.create(p);
+            console.log('q.r = '+q.r);
+            q.r = 4;
+            console.log(q.r);
+            console.log(q.x);
+            console.log(p.x);
+            console.log(Object.getOwnPropertyDescriptor(q,"x"));
+            //配置属性的属性描述符
+            Object.defineProperty(q,'z',{
+                writable:true,
+                configurable:true,
+                enumerable:false,
+                value:2
+            })
+            console.log(Object.getOwnPropertyDescriptor(q,"z"));
+            Object.defineProperty(q,'z',{
+                writable:false,
+                configurable:true,
+                enumerable:true,
+                value:3
+            })
+            console.log(Object.getOwnPropertyDescriptor(q,"z"));
+            console.log(Object.keys(q));
+            Object.defineProperty(q,'z',{
+                writable:false,
+                configurable:false,
+                enumerable:false,
+                value:222
+            })
+            console.log(Object.getOwnPropertyDescriptor(q,"z"));
+            q.z = 5;
+            console.log(Object.keys(q));
+            console.log(Object.getOwnPropertyDescriptor(q,"z"));
+            console.log(q.prototype);   //为什么会输出undefined
+            console.log(Object.getPrototypeOf(q));  //getPrototypeOf
+            console.log(p.isPrototypeOf(q));   //isPrototypeOf
         }
 
     </script>
