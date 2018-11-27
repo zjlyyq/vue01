@@ -41,13 +41,20 @@
         <button v-on:click="$emit('enlarge',0.2)">enlarge</button>
         <blog-post v-for="post in posts" v-bind:key="post.id" v-bind:post="post" v-on:enlarge-text="onEnlargeText"></blog-post>
         <alert-box>
-                Something bad happened.
+            Something bad happened.
         </alert-box>
+        <!-- 动态组件 -->
+        <!-- 组件会在 `currentTabComponent` 改变时改变 -->
+        <component v-bind:is="currentTabComponent"></component>
+        <table>
+            <blog-post-row></blog-post-row>
+        </table>
     </div>
     <script>
         var vm = new Vue({
             el: "#app",
             data: {
+                currentTabComponent: 'alert-box',
                 message: '这是用vs code写的代码',
                 posts: [
                     {
