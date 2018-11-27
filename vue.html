@@ -24,6 +24,15 @@
                         </div>
                     `
         })
+        // 通过插槽分发内容
+        Vue.component('alert-box', {
+            template: `
+                            <div class="demo-alert-box">
+                            <strong>Error!</strong>
+                            <slot></slot>
+                            </div>
+                        `
+        })
     </script>
     <div id="app">
         <input type="text" v-model="message">
@@ -31,22 +40,25 @@
         <button v-on:click="message += ' zjl love yyq'">test click</button>
         <button v-on:click="$emit('enlarge',0.2)">enlarge</button>
         <blog-post v-for="post in posts" v-bind:key="post.id" v-bind:post="post" v-on:enlarge-text="onEnlargeText"></blog-post>
+        <alert-box>
+                Something bad happened.
+        </alert-box>
     </div>
     <script>
         var vm = new Vue({
             el: "#app",
             data: {
                 message: '这是用vs code写的代码',
-                posts:[
+                posts: [
                     {
-                        id:1,
-                        title:'zjl',
-                        content:'zjl is 21'
+                        id: 1,
+                        title: 'zjl',
+                        content: 'zjl is 21'
                     },
                     {
-                        id:2,
-                        title:'yyq',
-                        content:'yyq is 21'
+                        id: 2,
+                        title: 'yyq',
+                        content: 'yyq is 21'
                     }
                 ]
             },
