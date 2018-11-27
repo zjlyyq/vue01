@@ -46,13 +46,21 @@
         <!-- 动态组件 -->
         <!-- 组件会在 `currentTabComponent` 改变时改变 -->
         <component v-bind:is="currentTabComponent"></component>
-        <table>
-            <blog-post-row></blog-post-row>
-        </table>
+        
+        <!-- 局部注册 -->
+        <ComponentA></ComponentA>
     </div>
     <script>
+        var ComponentA = { 
+            template:`
+                hello
+            `
+        }
         var vm = new Vue({
             el: "#app",
+            components:{
+                ComponentA
+            },
             data: {
                 currentTabComponent: 'alert-box',
                 message: '这是用vs code写的代码',
