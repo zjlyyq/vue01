@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>老老实实先不用脚手架吧</title>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <script>
+        // 全局注册一个组件
+        Vue.component('blog-post', {
+            props: ['post'],
+            template: `
+                        <div class="blog-post">
+                        <h3>{{ post.title }}</h3>
+                        <button v-on:click="$emit('enlarge-text')">
+                            Enlarge text
+                        </button>
+                        <div v-html="post.content"></div>
+                        </div>
+                    `
+        })
+    </script>
+    <div id="app">
+        <input type="text" v-model="message">
+        <p v-on:enlarge="enlargeFontSize()">{{message}}</p>
+        <button v-on:click="message += ' zjl love yyq'">test click</button>
+        <button v-on:click="$emit('enlarge',0.2)">enlarge</button>
+        <blog-post v-for="post in posts" v-bind:key="post.id" v-bind:post="post" v-on:enlarge-text="onEnlargeText"></blog-post>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                message: '这是用vs code写的代码',
+                posts:[
+                    {
+                        id:1,
+                        title:'zjl',
+                        content:'zjl is 21'
+                    },
+                    {
+                        id:2,
+                        title:'yyq',
+                        content:'yyq is 21'
+                    }
+                ]
+            },
+            created: function () {
+
+            },
+            methods: {
+                onEnlargeText: function () {
+                    console.log('font');
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
